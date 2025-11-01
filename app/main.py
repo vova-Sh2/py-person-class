@@ -8,15 +8,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_person = []
-    for dic in people:
-        person = Person(name=dic["name"], age=dic["age"])
-        list_person.append(person)
-    for index, value in enumerate(people):
-        for i in range(len(people)):
-            if list_person[i].name == value.get("wife"):
-                list_person[index].wife = list_person[i]
-            elif list_person[i].name == value.get("husband") :
-                list_person[index].husband = list_person[i]
+    person_data = [Person(name=d["name"], age=d["age"]) for d in people]
+    for i, v in enumerate(people):
+        if v.get("wife"):
+            person_data[i].wife = Person.people[v["wife"]]
+        elif v.get("husband"):
+            person_data[i].husband = Person.people[v["husband"]]
 
-    return list_person
+
+    print(person_data)
+
+    return person_data
