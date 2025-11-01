@@ -9,13 +9,9 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_data = [Person(name=d["name"], age=d["age"]) for d in people]
-    for i, v in enumerate(people):
-        if v.get("wife"):
-            person_data[i].wife = Person.people[v["wife"]]
-        elif v.get("husband"):
-            person_data[i].husband = Person.people[v["husband"]]
-
-
-    print(person_data)
-
+    for index, value in enumerate(people):
+        if value.get("wife"):
+            person_data[index].wife = Person.people[value["wife"]]
+        elif value.get("husband"):
+            person_data[index].husband = Person.people[value["husband"]]
     return person_data
